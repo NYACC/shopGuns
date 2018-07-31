@@ -1,0 +1,38 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="brandInfoForm">
+            <div class="row">
+                <div class="col-sm-12">
+                	<textarea id="htmlContentT" class="ckeditor" placeholder="文章内容">
+    					${aboutUs.content}
+                	</textarea>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12">
+                    <#button btnCss="info" name="提交修改" id="ensure" icon="fa-check" clickFun="AboutUs.editSubmit()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/js/plugins/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    CKEDITOR.replace('htmlContentT');
+});
+var AboutUs = {};
+AboutUs.editSubmit=function(){
+	var ajax = new $ax(Feng.ctxPath + "/aboutUs/edit", function (data) {
+		Feng.success("修改成功!");
+    }, function (data) {
+        Feng.error("修改失败");
+    });
+    ajax.set("content", CKEDITOR.instances.htmlContentT.getData());
+    ajax.start();
+}
+</script>
+@}

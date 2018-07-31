@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.md.content.dao.AdvertisingMapper">
+	<resultMap id="BaseResultMap" type="com.md.content.model.Advertising">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="picture" property="picture" />
+		<result column="link" property="link" />
+		<result column="sequence" property="sequence" />
+		<result column="positionId" property="positionId" />
+		<result column="priceTagIds" property="priceTagIds" />
+		<result column="createTime" property="createTime" />
+		<result column="shopId" property="shopId" />
+	</resultMap>
+</mapper>

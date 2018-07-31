@@ -1,0 +1,35 @@
+@layout("/common/_container.html"){
+<!-- 导入相册的样式 -->
+<link href="${ctxPath}/static/js/plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="goodsInfoForm">
+            <input type="hidden" id="id" value="">
+            <input type="hidden" id="products" value='${productList}'>
+            <input type="hidden" id="priceTags" value='${priceTagList}'>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="tabs-container">
+                        <ul class="nav nav-tabs" id="tabs">
+                        </ul>
+                        <div class="tab-content" id="tab-content">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PriceTagInfo.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="GoodsInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/goods/goods/goods_info.js"></script>
+<script src="${ctxPath}/static/modular/goods/goods/priceTag_assign.js"></script>
+<script>
+    PriceTagInfo.products=${productList};
+    PriceTagInfo.priceTags=${priceTagList};
+</script>
+@}

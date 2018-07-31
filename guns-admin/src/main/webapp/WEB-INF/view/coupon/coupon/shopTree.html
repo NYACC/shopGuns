@@ -1,0 +1,83 @@
+@layout("/common/_container.html"){
+
+<script type="text/javascript">
+    $(function () {
+        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+
+        $("#btn_close").bind("click", function () {
+            parent.layer.close(index);
+        });
+
+        $("#btn_save").bind("click", function () {
+            var ids = Feng.zTreeCheckedNodes("zTree");
+            var ajax = new $ax(Feng.ctxPath + "/promotion/setShop", function (data) {
+                Feng.success("选择门店成功!");
+                parent.layer.close(index);
+                var ids='';
+                var names='';
+                for(var i=0; i<data.length; i++){
+                	if(data[i]!=null){
+                		ids += data[i].id+',';
+                    	names += data[i].name+',';
+                	}
+                }
+                ids = ids.substring(0,ids.length-1);
+                names = names.substring(0,names.length-1);
+                $("#shop",window.parent.document).val(names);
+                $("#shopIds",window.parent.document).val(ids);
+            }, function (data) {
+                Feng.error("选择分类失败!" + "!");
+            });
+            ajax.set("ids", ids);
+            ajax.start();
+        });
+
+        initZtree();
+    });
+    function zTreeBeforeCheck(treeId, treeNode) {
+        return !treeNode.isParent;//当是父节点 返回false 不让选取
+   	}
+    function initZtree() {
+        var setting = {
+            check: {
+                enable: true,
+                chkboxType: { "Y": "ps", "N": "ps" }
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+        }
+		var shopIds=parent.document.getElementById("shopIds").value;
+        if(shopIds==""){
+        	shopIds=0;
+		}
+        var ztree = new $ZTree("zTree",Feng.ctxPath + "/stores/treeByShopIds/"+shopIds);
+        ztree.setSettings(setting);
+        ztree.init();
+    }
+</script>
+<!-- 配置grid -->
+<div class="container" style="padding:  0px 10px !important;margin-top: -10px;text-align: center !important;">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <ul id="zTree" class="ztree"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-sm btn-info" type="button" id="btn_save">
+                <i class="ace-icon fa fa-check bigger-110"></i>保存
+            </button>
+            &nbsp;
+            <button class="btn btn-sm btn-danger" type="button" id="btn_close">
+                <i class="ace-icon fa fa-close bigger-110"></i>关闭
+            </button>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/content/article/article_info.js"></script>
+@}

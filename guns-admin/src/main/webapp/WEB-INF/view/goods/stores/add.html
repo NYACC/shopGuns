@@ -1,0 +1,75 @@
+@layout("/common/_container.html"){
+<style type="text/css">
+    body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";font-size:14px;}
+    #l-map{height:300px;width:100%;}
+    #r-result{width:100%;}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=qjSvTqCV3xTiMX4IiXCh7x7x3f5T4LmK"></script>
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="storesInfoForm">
+
+            <input type="hidden" id="id" value="">
+			<input type="hidden" id="introduce" value="">
+            <div class="row">
+            	<div class="col-sm-8 form-group" >
+            		<label class="col-sm-2 control-label">门店名称</label>
+            		<div class="col-sm-10 ">
+            			<input class="form-control" id="name" name="name" />
+            		</div>
+                </div>
+                <div class="col-sm-8 form-group">
+                	<label class="col-sm-2 control-label">门店电话</label>
+                	<div class="col-sm-10 ">
+                    	<input class="form-control" id="phone" name="phone" />
+                    </div>
+                </div>
+                <div class="col-sm-8 form-group">
+                	<label class="col-sm-2 control-label">门店排序</label>
+                	<div class="col-sm-10 ">
+                    	<input class="form-control" id="num" name="num" />
+                    </div>
+                </div>
+                <div class="col-sm-8 form-group">
+                	<label class="col-sm-2 control-label">所属地区</label>
+                	<div class="col-sm-3">
+	                     <select class="form-control m-b" id="province" onchange="StoresInfoDlg.provinceChange()" >
+	                         <option value="">请选择省</option>
+	                     </select>
+	                 </div>
+	                 <div class="col-sm-3">
+	                     <select class="form-control m-b" id="city" onchange="StoresInfoDlg.cityChange()" >
+	                         <option value="">请选择市</option>
+	                     </select>
+	                 </div>
+	                 <div class="col-sm-3">
+                          <select class="form-control m-b" id="county" onchange="StoresInfoDlg.countyChange()" >
+                              <option value="">请选择区/县</option>
+                          </select>
+                     </div>
+                </div>
+                <div id="r-result" >
+                	<div class="col-sm-8 form-group">
+                		<label class="col-sm-2 control-label">门店地址</label>
+	                    <div class="col-sm-10 ">
+	                    	<input class="form-control" id="address" name="address" />
+	                    </div>
+                	</div>
+                </div>
+                <div id="l-map"></div>
+                <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="StoresInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="StoresInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/goods/stores/stores_info.js"></script>
+<script src="${ctxPath}/static/modular/goods/stores/stores_map.js"></script>
+@}

@@ -1,0 +1,59 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="InventoryInfoForm">
+            <div class="row">
+                <div class="col-sm-12">
+                    <input type="hidden" id="type" value="${type}">
+                    <div class="col-sm-6">
+                    	<input type="hidden" id="operatorId" value="${shiro.getUser().id}" />
+                        <strong>操作员：</strong> <span id="userName">${shiro.getUser().name}</span>&nbsp;
+                    </div>
+                    <div class="col-sm-6">
+                        <strong>时间：</strong> <span id="createTime">${createTime}</span>
+                    </div>
+                    <div class="col-sm-12 ">
+                        <strong>备注：</strong>
+                        <textarea id="remark" rows="5"
+                                  style="width: 100%"></textarea>
+                    </div>
+                    <div class="row">
+                        <input type="hidden" id="productId">
+                        <label class="col-sm-1 control-label">商品条码：</label>
+                        <div class="col-sm-5">
+                            <div class="input-group" style="width: 400px;">
+                                <input type="text" class="form-control" id="product">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                    </ul>
+                                </div>
+                                <!-- /btn-group -->
+                            </div>
+                        </div>
+                        <label class="col-sm-1 control-label">商品名称：</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" readonly value="" id="goodsName">
+                        </div>
+                    </div>
+                    <#table id="priceTagTable"/>
+                </div>
+            </div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="确认" id="ensure" icon="fa-check"
+                    clickFun="InventoryInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="InventoryInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<script src="${ctxPath}/static/js/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="${ctxPath}/static/modular/order/inventory/inventory_info.js"></script>
+
+@}

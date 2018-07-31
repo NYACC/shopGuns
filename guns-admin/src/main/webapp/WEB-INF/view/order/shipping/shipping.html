@@ -1,0 +1,62 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="shippingInfoForm">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <strong>操作员：</strong> <span  id="userName">${shiro.getUser().name}</span>&nbsp;
+                        <div class="hr-line-dashed"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 b-r">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">订单编号：</label>
+                                <input type="hidden" class="form-control" id="orderId" value="${order.id}">
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="orderSn" value="${order.sn}" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">发货单号：</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="ShippingSn" value="${shippingSn}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">物流公司：</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="logisticsFirm">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">物流编号：</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="logisticsNum">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive m-t" id="shippingItems">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="确认发货" id="ensure" icon="fa-check" clickFun="ShippingInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ShippingInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<script src="${ctxPath}/static/modular/order/shipping/shipping_info.js"></script>
+<script>
+    ShippingInfoDlg.orderItems=${orderItems}
+</script>
+@}

@@ -1,0 +1,43 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+	<div class="ibox-content">
+		<div class="form-horizontal" >
+			<form  id="form1" action="" enctype="multipart/form-data"  method="post" >
+			<input type="hidden" id="deliveryModeId" name="deliveryModeId" value="${deliveryMode.id}">
+			
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">配送方式名称</label>
+						<div class="col-sm-10">
+							<label >${deliveryMode.name}</label>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label">上传文件</label>
+						<div class="col-sm-10">
+							<input  id="file" name="file" type="file">
+						</div>
+					</div>
+					
+					<div class="row btn-group-m-t">
+						<div class="col-sm-10">
+							<#button btnCss="info" name="提交" id="ensure" icon="fa-check"
+							clickFun="DeliveryCostInfoDlg.import()"/> 
+							<#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser"
+							clickFun="DeliveryCostInfoDlg.close()"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/delivery/deliveryMode/deliveryCost_info.js"></script>
+<script src="${ctxPath}/static/js/jquery.form.js"></script>
+<script>
+	$("#form1").attr("action",Feng.ctxPath+"/deliveryMode/importCost");
+</script>
+@}

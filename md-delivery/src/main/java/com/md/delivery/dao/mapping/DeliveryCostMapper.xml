@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.md.delivery.dao.DeliveryCostMapper">
+	<resultMap id="BaseResultMap" type="com.md.delivery.model.DeliveryCost">
+		<id column="id" property="id" />
+		<result column="deliveryArea" property="deliveryArea" />
+		<result column="areaId" property="areaId" />
+		<result column="modeId" property="modeId" />
+		<result column="isdelivery" property="isdelivery" />
+		<result column="ykg" property="ykg" />
+		<result column="startPrice" property="startPrice" />
+		<result column="addedWeight" property="addedWeight" />
+		<result column="addedPrice" property="addedPrice" />
+		<result column="createTime" property="createTime" />
+		<result column="modifyTime" property="modifyTime" />
+	</resultMap>
+
+	<select id="findList" resultType="map">
+		SELECT *,
+		(SELECT full_name  from shop_area WHERE shop_area.id = shop_delivery_cost.deliveryArea) AS deliveryAreaName,
+		(SELECT full_name  from shop_area WHERE shop_area.id = shop_delivery_cost.areaId) AS areaName
+		FROM shop_delivery_cost
+		WHERE
+		modeId=#{modeId}
+		<if test="isdelivery != null and isdelivery != ''">
+			AND isdelivery=#{isdelivery}
+		</if>
+		<if test="areaIds.size > 0">
+			AND areaId in
+			<foreach  item="item" collection="areaIds" index="index"  open="(" separator="," close=")">#{item}</foreach>
+		</if>
+		<if test="deliveryArea.size > 0">
+			AND deliveryArea in
+			<foreach  item="item" collection="deliveryArea" index="index"  open="(" separator="," close=")">#{item}</foreach>
+		</if>
+		ORDER BY
+		areaId 
+	</select>
+</mapper>

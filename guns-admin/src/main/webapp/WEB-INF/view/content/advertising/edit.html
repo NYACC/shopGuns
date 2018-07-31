@@ -1,0 +1,83 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="brandInfoForm">
+			<input type="hidden" id="type" value="">
+            <input type="hidden" id="id" value="${advertising.id}">
+            <div class="row">
+            	
+                <div class="form-group">
+                	<div class="col-sm-8">
+                       <#avatar id="picture" name="广告图片" avatarImg="${advertising.picture}"/>
+				    </div>
+				</div>
+				<div class="form-group">
+				    <label class="col-sm-6 control-label" id="tip" style="color:gray" ></label>
+				</div>
+				<div class="form-group">
+				    <label class="col-sm-2 control-label">广告名称</label>
+				    <div class="col-sm-6">
+                       <input class="form-control"  type="text" name="name" id="name" value="${advertising.name}" />
+				    </div>
+				</div>
+				<div class="form-group">
+				    <label class="col-sm-2 control-label">链接地址</label>
+				    <div class="col-sm-6">
+                       <input class="form-control"  type="text" name="link" id="link" value="${advertising.link}" />
+				    </div>
+				</div>
+				<div class="form-group">
+				    <label class="col-sm-2 control-label">广告位</label>
+				    <div class="col-sm-6">
+                       <select class="form-control m-b" id="positionId" value="广告位">
+                       	   <script>var tips=[]</script>
+                           @for(position in positions){
+                              <option value='${position.id}'>${position.name}</option>
+                              <script> tips.push('${position.tip}')</script>
+                           @}
+                       </select>
+				    </div>
+				</div>
+				<div class="form-group">
+				    <label class="col-sm-2 control-label">所属门店</label>
+				    @if(shop != null){
+				    <div class="col-sm-6">
+                       <input class="form-control"  type="text" readonly="readonly" name="shopName" id="shopName" value="${shop.name}" />
+				    </div>
+				    @}else{
+			    	<div class="col-sm-6">
+                       <select class="form-control m-b" id="shopId">
+                           @for(shoptemp in shops){
+                              <option value="${shoptemp.id}">${shoptemp.name}</option>
+                           @}
+                       </select>
+			    	</div>
+				    @}
+				</div>
+				<div class="form-group">
+				    <label class="col-sm-2 control-label">排序</label>
+				    <div class="col-sm-6">
+                       <input class="form-control"  type="text" name="sequence" id="sequence" value="${advertising.sequence}"/>
+				    </div>
+				</div>
+                
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="AdvertisingInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="AdvertisingInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/js/plugins/ckeditor/ckeditor.js"></script>
+<script src="${ctxPath}/static/modular/content/advertising/advertising_info.js"></script>
+<script type="text/javascript">
+	$("#positionId").find("option[value = '${advertising.positionId}']").attr("selected","selected");
+	$("#shopId").find("option[value = '${advertising.shopId}']").attr("selected","selected");
+	AdvertisingInfoDlg.positionChange();
+</script>
+@}

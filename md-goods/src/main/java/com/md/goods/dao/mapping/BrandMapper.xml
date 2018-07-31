@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.md.goods.dao.BrandMapper">
+	<resultMap id="BaseResultMap" type="com.md.goods.model.Brand">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="introduce" property="introduce" />
+		<result column="logoPath" property="logoPath" />
+		<result column="num" property="num" />
+		<result column="status" property="status" />
+	</resultMap>
+</mapper>

@@ -1,0 +1,43 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>广告管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                    	<div class="row">
+                            <div class="col-sm-3">
+                                <select class="form-control m-b" id="position" value="广告位">
+                                    <option value="">请选择广告位</option>
+                                    @for(position in positions){
+                                    <option value="${position.id}">${position.name}</option>
+                                    @}
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <#button name="搜索" icon="fa-search" clickFun="Advertising.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="AdvertisingTableToolbar" role="group">
+                            @if(shiro.hasPermission("/advertising/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="Advertising.openAdd()"/>
+                            @}
+                            @if(shiro.hasPermission("/advertising/edit")){
+                                <#button name="修改" icon="fa-edit" clickFun="Advertising.openDetail()"/>
+                            @}
+                            @if(shiro.hasPermission("/advertising/delete")){
+                                <#button name="删除" icon="fa-remove" clickFun="Advertising.delete()"/>
+                            @}
+                        </div>
+                        <#table id="AdvertisingTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/content/advertising/advertising.js"></script>
+@}

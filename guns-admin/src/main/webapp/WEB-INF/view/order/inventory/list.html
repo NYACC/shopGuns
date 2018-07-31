@@ -1,0 +1,78 @@
+@layout("/common/_container.html"){
+<link href="${ctxPath}/static/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>库存管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <#NameCon id="goodsName" name="商品名称" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="barcode" name="商品条码" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="operator" name="操作员" />
+                            </div>
+                            <div class="col-sm-1">
+                                <select class="form-control m-b" name="status" id="type">
+                                    <option value="">--类型--</option>
+                                    <option value="0">出库</option>
+                                    <option value="1">入库</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group" id="data_5">
+                                    <div class="input-daterange input-group" id="datepicker">
+                                        <input type="text" class="input-sm form-control" name="start" value="2018-4-10" />
+                                        <span class="input-group-addon">到</span>
+                                        <input type="text" class="input-sm form-control" name="end" value="2018-4-10" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <#button name="搜索" icon="fa-search" clickFun="Inventory.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="InventoryTableToolbar" role="group">
+                            @if(shiro.hasPermission("/inventory/output")){
+                                <#button name="出库" icon="fa-plus" clickFun="Inventory.openAddInventory(0)"/>
+                            @}
+                            @if(shiro.hasPermission("/inventory/input")){
+                                <#button name="入库" icon="fa-plus" clickFun="Inventory.openAddInventory(1)"/>
+                            @}
+                        </div>
+                        <#table id="InventoryTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/order/inventory/inventory.js"></script>
+<!-- Data picker -->
+<script src="${ctxPath}/static/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#data_2 .input-group.date').datepicker({
+            startView: 1,
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            autoclose: true,
+            format: "yyyy-mm-dd"
+        });
+
+        $('#data_5 .input-daterange').datepicker({
+            keyboardNavigation: false,
+            forceParse: false,
+            autoclose: true
+        });
+    });
+</script>
+@}

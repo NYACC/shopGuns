@@ -1,0 +1,53 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>会员卡管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="cardSn" name="卡号" />
+                            </div>
+                            <div class="col-sm-1">
+                                <select class="form-control m-b" name="level">
+                                    <option value="">等级</option>
+                                    @for(card in cardLevels){
+                                    <option value="${card.id}">${card.name}</option>
+                                    @}
+                                </select>
+                            </div>
+                            <div class="col-sm-1">
+                                <select class="form-control m-b" name="status">
+                                    <option value="">状态</option>
+                                    <option value="1">启用</option>
+                                    <option value="0">停用</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <#button name="搜索" icon="fa-search" clickFun="MemberCard.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="MemberCardTableToolbar" role="group">
+                            @if(shiro.hasPermission("/memberCard/add")){
+                            <#button name="添加" icon="fa-plus" clickFun="MemberCard.openAdd()"/>
+                            @}
+                            @if(shiro.hasPermission("/memberCard/update")){
+                            <#button name="修改" icon="fa-edit" clickFun="MemberCard.openDetail()"/>
+                            @}
+                            @if(shiro.hasPermission("/memberCard/output")){
+                            <#button name="导出" icon="fa-check-circle" clickFun="MemberCard.output()"/>
+                            @}
+                        </div>
+                        <#table id="MemberCardTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/member/memberCard/memberCard.js"></script>
+@}

@@ -1,0 +1,15 @@
+package com.md.order.dao;
+
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.md.order.model.OrderLog;
+
+/**
+ * <p>
+  * 操作日志 Mapper 接口
+ * </p>
+ *
+ * @author stylefeng
+ * @since 2017-07-11
+ */
+public interface OrderLogMapper extends BaseMapper<OrderLog> {
+}

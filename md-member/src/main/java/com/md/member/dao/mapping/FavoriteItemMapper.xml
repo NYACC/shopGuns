@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.md.member.dao.FavoriteItemMapper">
+	<resultMap id="BaseResultMap" type="com.md.member.model.FavoriteItem">
+		<id column="id" property="id" />
+		<result column="favoriteId" property="favoriteId" />
+		<result column="shopId" property="shopId" />
+		<result column="goodsId" property="goodsId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id , favoriteId ,shopId ,goodsId
+	</sql>
+	<select id="selectFavoriteItemByfavoriteId" resultType="map">
+		select 	*,sfi.id AS favoriteItemId from shop_favorite_item sfi 
+		LEFT JOIN shop_goods ON shop_goods.id = sfi.goodsId 
+		WHERE sfi.favoriteId = #{favoriteId} order by  sfi.shopId
+	</select>
+</mapper>

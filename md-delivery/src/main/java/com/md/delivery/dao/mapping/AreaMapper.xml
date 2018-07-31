@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.md.delivery.dao.AreaMapper">
+	<resultMap id="BaseResultMap" type="com.md.delivery.model.Area">
+		<id column="id" property="id" />
+		<result column="create_date" property="create_date" />
+		<result column="modify_date" property="modify_date" />
+		<result column="version" property="version" />
+		<result column="orders" property="orders" />
+		<result column="full_name" property="full_name" />
+		<result column="grade" property="grade" />
+		<result column="name" property="name" />
+		<result column="tree_path" property="tree_path" />
+		<result column="parent" property="parent" />
+	</resultMap>
+</mapper>

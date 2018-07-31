@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.md.order.dao.InventoryMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.md.order.model.Inventory">
+		<id column="id" property="id" />
+		<result column="sn" property="sn" />
+		<result column="barcode" property="barcode" />
+		<result column="type" property="type" />
+		<result column="goodsName" property="goodsName" />
+		<result column="amount" property="amount" />
+		<result column="createTime" property="createTime" />
+		<result column="remark" property="remark" />
+		<result column="operatorId" property="operatorId" />
+		<result column="shopId" property="shopId" />
+	</resultMap>
+</mapper>

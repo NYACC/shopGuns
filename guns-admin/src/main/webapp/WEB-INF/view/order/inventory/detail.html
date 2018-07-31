@@ -1,0 +1,47 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="shippingInfoForm">
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <label>库存单编号：</label>&nbsp;<span>${inventory.sn}</span><br>
+                </div>
+                <div class="col-sm-6 b-r">
+                    <label>商品规格名称：</label>&nbsp;<span>${inventory.goodsName}</span><br>
+                </div>
+                <div class="col-sm-6 b-r">
+                    <label>创建时间：</label>&nbsp;<span>${inventory.createTime}</span><br>
+                </div>
+                <div class="col-sm-6 b-r">
+                    <label>商品条码：</label>&nbsp;<span>${inventory.barcode}</span><br>
+                </div>
+                <div class="col-sm-6 b-r">
+                    <label>操作员：</label>&nbsp;<span>${user.name}</span><br>
+                </div>
+                <div class="col-sm-6 b-r">
+                    <label>门店：</label>&nbsp;<span>${shop.name}</span><br>
+                </div>
+                <div class="col-sm-6 b-r">
+                    <label>操作类型：</label>&nbsp;<span>${inventory.type==0?"出库":"入库"}</span><br>
+                </div>
+                <div class="col-sm-6 b-r">
+                    <label>数量：</label>&nbsp;<span>${inventory.amount}</span><br>
+                </div>
+                <div class="col-sm-12 b-r">
+                    &nbsp;
+                    <div class="hr-line-dashed"></div>
+                </div>
+                <div class="col-sm-12">
+                    <label class="col-sm-2">备注：</label>
+                    <div class="col-sm-10">
+                        <textarea readonly="readonly" id="remark" rows="5"
+                                 style="width: 100%">${inventory.remark}</textarea></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<script src="${ctxPath}/static/modular/order/inventory/inventory_info.js"></script>
+@}

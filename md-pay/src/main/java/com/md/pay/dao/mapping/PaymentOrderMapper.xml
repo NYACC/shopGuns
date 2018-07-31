@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.md.pay.dao.PaymentOrderMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.md.pay.model.PaymentOrder">
+		<id column="id" property="id" />
+		<result column="outTradeNo" property="outTradeNo" />
+		<result column="deviceInfo" property="deviceInfo" />
+		<result column="openId" property="openId" />
+		<result column="isSubscribe" property="isSubscribe" />
+		<result column="tradeType" property="tradeType" />
+		<result column="bankType" property="bankType" />
+		<result column="totalFee" property="totalFee" />
+		<result column="settlementTotalFee" property="settlementTotalFee" />
+		<result column="feeType" property="feeType" />
+		<result column="cashFee" property="cashFee" />
+		<result column="transactionId" property="transactionId" />
+		<result column="timeEnd" property="timeEnd" />
+	</resultMap>
+</mapper>

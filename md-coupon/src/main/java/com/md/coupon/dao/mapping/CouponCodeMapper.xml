@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.md.coupon.dao.CouponCodeMapper">
+	<resultMap id="BaseResultMap" type="com.md.coupon.model.CouponCode">
+		<id column="id" property="id" />
+		<result column="code" property="code" />
+		<result column="couponId" property="couponId" />
+		<result column="status" property="status" />
+		<result column="receviceTime" property="receviceTime" />
+		<result column="memberId" property="memberId" />
+		<result column="validityTime" property="validityTime" />
+		<result column="createTime" property="createTime" />
+	</resultMap>
+</mapper>

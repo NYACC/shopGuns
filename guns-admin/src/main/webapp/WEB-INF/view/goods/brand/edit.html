@@ -1,0 +1,40 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="brandInfoForm">
+
+            <input type="hidden" id="id" value="${brand.id}">
+            <div class="row">
+            	<div class="col-sm-6" >
+                	<#avatar id="avatar" name="品牌logo" avatarImg="${brand.avatar}"/>
+                    
+                    <#input id="name" name="品牌名称"  value="${brand.name}"/>
+
+                    <#input id="num" name="品牌排序"  value="${brand.num}"/>
+                    
+                    <!-- <#input id="introduce" name="品牌介绍"  value="${brand.introduce}"/> -->
+                </div>
+                <div class="col-sm-12">
+                	<textarea id="returnIntroduce" class="ckeditor" placeholder="品牌介绍">
+    					${brand.introduce}
+                	</textarea>
+                </div>
+            </div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="BrandInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="BrandInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/js/plugins/ckeditor/ckeditor.js"></script>
+<script src="${ctxPath}/static/modular/goods/brand/brand_info.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    CKEDITOR.replace('returnIntroduce');
+});
+</script>
+@}

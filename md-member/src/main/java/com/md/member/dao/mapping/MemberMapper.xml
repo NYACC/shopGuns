@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.md.member.dao.MemberMapper">
+	<resultMap id="BaseResultMap" type="com.md.member.model.Member">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="phoneNum" property="phoneNum" />
+		<result column="sex" property="sex" />
+		<result column="cardSn" property="cardSn" />
+		<result column="password" property="password" />
+		<result column="balanceSn" property="balanceSn" />
+		<result column="integralSn" property="integralSn" />
+		<result column="status" property="status" />
+		<result column="openId" property="openId" />
+		<result column="token" property="token" />
+		<result column="captcha" property="captcha" />
+	</resultMap>
+</mapper>

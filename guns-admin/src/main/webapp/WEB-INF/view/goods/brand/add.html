@@ -1,0 +1,41 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="brandInfoForm">
+
+            <input type="hidden" id="id" value="">
+			<input type="hidden" id="introduce" value="">
+            <div class="row">
+            	<div class="col-sm-6 ">
+                	<#avatar id="avatar" name="品牌logo" avatarImg=""/>
+
+                    <#input id="name" name="品牌名称" />
+					
+	                <#input id="num" name="品牌排序" />
+	
+                </div>
+                <div class="col-sm-12">
+                	<textarea id="htmlContentT" class="ckeditor" placeholder="品牌介绍">
+    					品牌介绍...
+                	</textarea>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="BrandInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="BrandInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/js/plugins/ckeditor/ckeditor.js"></script>
+<script src="${ctxPath}/static/modular/goods/brand/brand_info.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    CKEDITOR.replace('htmlContentT');
+});
+</script>
+@}

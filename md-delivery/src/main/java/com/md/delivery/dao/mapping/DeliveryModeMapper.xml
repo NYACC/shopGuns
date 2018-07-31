@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.md.delivery.dao.DeliveryModeMapper">
+	<resultMap id="BaseResultMap" type="com.md.delivery.model.DeliveryMode">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="createTime" property="createTime" />
+		<result column="sequence" property="sequence" />
+		<result column="remark" property="remark" />
+	</resultMap>
+</mapper>

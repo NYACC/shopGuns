@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.md.order.dao.EvaluationMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.md.order.model.Evaluation">
+		<id column="id" property="id" />
+		<result column="memberId" property="memberId" />
+		<result column="orderItemId" property="orderItemId" />
+		<result column="goodsId" property="goodsId" />
+		<result column="shopId" property="shopId" />
+		<result column="specName" property="specName" />
+		<result column="level" property="level" />
+		<result column="createTime" property="createTime" />
+		<result column="detail" property="detail" />
+		
+	</resultMap>
+</mapper>

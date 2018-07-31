@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.md.coupon.dao.PromotionMapper">
+	<resultMap id="BaseResultMap" type="com.md.coupon.model.Promotion">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="model" property="model" />
+		<result column="fulfil" property="fulfil" />
+		<result column="reduce" property="reduce" />
+		<result column="discount" property="discount" />
+		<result column="couponId" property="couponId" />
+		<result column="shopId" property="shopId" />
+		<result column="remark" property="remark" />
+		<result column="status" property="status" />
+		<result column="disableTime" property="disableTime" />
+		<result column="startTime" property="startTime" />
+		<result column="endTime" property="endTime" />
+		<result column="createTime" property="createTime" />
+	</resultMap>
+	
+	<select id="findJionNoEnd" resultType="com.md.coupon.model.Promotion">
+		select *
+		from shop_promotion as A,shop_promotion_pricetag as B
+		where 
+		A.id = B.promotionId 
+		and B.priceTagId = #{priceTagId}
+		and A.status in (0,1)
+	</select>
+</mapper>

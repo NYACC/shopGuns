@@ -1,0 +1,55 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+	<div class="ibox-content">
+		<div class="form-horizontal" id="tagInfoForm" >
+			<form  id="form1" action="" enctype="multipart/form-data"  method="post" >
+			<input type="hidden" id="couponId" name="couponId" value="${coupon.id}">
+			
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">优惠卷名称</label>
+						<div class="col-sm-10">
+							<label >${coupon.name}</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">优惠内容</label>
+						<div class="col-sm-10">
+							<label>满&nbsp;${coupon.fulfil}&nbsp;元,
+								@if(coupon.model==2){
+                                	打&nbsp;${coupon.discount*10}&nbsp;折
+                                @}
+                                @if(coupon.model==1){
+                                	减&nbsp;${coupon.reduce}&nbsp;元
+                                @}
+                            </label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">上传文件</label>
+						<div class="col-sm-10">
+							<input  id="file" name="file" type="file">
+						</div>
+					</div>
+					
+					<div class="row btn-group-m-t">
+						<div class="col-sm-10">
+							<#button btnCss="info" name="提交" id="ensure" icon="fa-check"
+							clickFun="CouponInfoDlg.import()"/> 
+							<#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser"
+							clickFun="CouponInfoDlg.close()"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/coupon/coupon/coupon_info.js"></script>
+<script src="${ctxPath}/static/js/jquery.form.js"></script>
+<script>
+	$("#form1").attr("action",Feng.ctxPath+"/coupon/importCode");
+</script>
+@}

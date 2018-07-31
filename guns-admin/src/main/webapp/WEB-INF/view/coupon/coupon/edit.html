@@ -1,0 +1,159 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+	<div class="ibox-content">
+		<div class="form-horizontal" >
+
+			<input type="hidden" id="id" value="${coupon.id}">
+			
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">优惠卷名称</label>
+						<div class="col-sm-10">
+							<input class="form-control" id="name" name="name" type="text" value="${coupon.name}" >
+						</div>
+					</div>
+					<input id="hello" type="hidden" class="laydate-icon form-control layer-date">
+					<div class="form-group" class="form-horizontal m-t">
+						<label class="col-sm-2 control-label">使用期限</label>
+						<div class="col-sm-5">
+							<input placeholder="开始日期" class="form-control layer-date" id="useStart" value="${coupon.useStart}" > 
+						</div>
+						<div class="col-sm-5">
+							<input placeholder="结束日期" class="form-control layer-date" id="useEnd" value="${coupon.useEnd}"> 
+						</div>
+					</div>
+					<input id="hello1" type="hidden" class="laydate-icon form-control layer-date">
+					<div class="form-group" class="form-horizontal m-t">
+						<label class="col-sm-2 control-label">领卷期限</label>
+						<div class="col-sm-5">
+							<input placeholder="开始日期" class="form-control layer-date" id="receiveStart" value="${coupon.receiveStart}"> 
+						</div>
+						<div class="col-sm-5">
+							<input placeholder="结束日期" class="form-control layer-date" id="receiveEnd" value="${coupon.receiveEnd}">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">优惠方式</label>
+						<div class="col-sm-10">
+							<select class="form-control m-b" id="model" >
+			                    <option value="1">领取卷</option>
+								<option value="2">赠送卷</option>
+			                </select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">满</label>
+						<div class="col-sm-4">
+							<input class="form-control" id="fulfil" name="fulfil" value="${coupon.fulfil}"
+								type="number">
+						</div>
+						<div id="_reduce" >
+							<label class="col-sm-1 control-label">减</label>
+							<div class="col-sm-4">
+								<input class="form-control" id="reduce" name="reduce" value="${coupon.reduce}"
+									type="number">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">所属门店</label>
+						<div class="col-sm-10">
+							  <input class="form-control" id="shop" name="shop" readonly="readonly" type="text" value="${shop.name}">
+			                  <input name="shopIds" id="shopIds" type="hidden" value="${shop.id}"/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label">介绍</label>
+						<div class="col-sm-10">
+							<input class="form-control" id="remark" name="remark" value="${coupon.remark}"
+								type="text">
+						</div>
+					</div>
+
+					<div class="row btn-group-m-t">
+						<div class="col-sm-10"><#button btnCss="info" name="提交"
+							id="ensure" icon="fa-check"
+							clickFun="CouponInfoDlg.editSubmit()"/> <#button
+							btnCss="danger" name="取消" id="cancel" icon="fa-eraser"
+							clickFun="CouponInfoDlg.close()"/></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/coupon/coupon/coupon_info.js"></script>
+<!-- layerDate plugin javascript -->
+<script src="${ctxPath}/static/js/plugins/layer/laydate/laydate.js"></script>
+<script>
+	//外部js调用
+	laydate({
+		elem : '#hello', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+		event : 'focus' //响应事件。如果没有传入event，则按照默认的click
+	});
+
+	//日期范围限制
+	var start = {
+		elem : '#useStart',
+		format : 'YYYY-MM-DD hh:mm:ss',
+		min : laydate.now(), //设定最小日期为当前日期
+		max : '2099-06-16 23:59:59', //最大日期
+		istime : true,
+		istoday : false,
+		choose : function(datas) {
+			end.min = datas; //开始日选好后，重置结束日的最小日期
+			end.start = datas //将结束日的初始值设定为开始日
+		}
+	};
+	var end = {
+		elem : '#useEnd',
+		format : 'YYYY-MM-DD hh:mm:ss',
+		min : laydate.now(),
+		max : '2099-06-16 23:59:59',
+		istime : true,
+		istoday : false,
+		choose : function(datas) {
+			start.max = datas; //结束日选好后，重置开始日的最大日期
+		}
+	};
+	laydate(start);
+	laydate(end);
+	
+	
+	laydate({
+		elem : '#hello1', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+		event : 'focus' //响应事件。如果没有传入event，则按照默认的click
+	});
+	//日期范围限制
+	var start1 = {
+		elem : '#receiveStart',
+		format : 'YYYY-MM-DD hh:mm:ss',
+		min : laydate.now(), //设定最小日期为当前日期
+		max : '2099-06-16 23:59:59', //最大日期
+		istime : true,
+		istoday : false,
+		choose : function(datas) {
+			end1.min = datas; //开始日选好后，重置结束日的最小日期
+			end1.start = datas //将结束日的初始值设定为开始日
+		}
+	};
+	var end1 = {
+		elem : '#receiveEnd',
+		format : 'YYYY-MM-DD hh:mm:ss',
+		min : laydate.now(),
+		max : '2099-06-16 23:59:59',
+		istime : true,
+		istoday : false,
+		choose : function(datas) {
+			start1.max = datas; //结束日选好后，重置开始日的最大日期
+		}
+	};
+	laydate(start1);
+	laydate(end1);
+	
+	$("#model").find("option[value = '"+${coupon.model}+"']").attr("selected","selected");
+	CouponInfoDlg.selChange();
+</script>
+@}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.md.order.dao.OrderMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.md.order.model.Order">
+		<id column="id" property="id" />
+		<result column="sn" property="sn" />
+		<result column="createTime" property="createTime" />
+		<result column="due" property="due" />
+		<result column="actualPay" property="actualPay" />
+		<result column="packages" property="packages" />
+		<result column="payment" property="payment" />
+		<result column="vipCardId" property="vipCardId" />
+		<result column="billId" property="billId" />
+		<result column="weight" property="weight" />
+		<result column="diliveryPay" property="diliveryPay" />
+		<result column="consigneeName" property="consigneeName" />
+		<result column="address" property="address" />
+		<result column="phoneNum" property="phoneNum" />
+		<result column="remark" property="remark" />
+		<result column="status" property="status" />
+		<result column="memberId" property="memberId" />
+		<result column="shopId" property="shopId" />
+		<result column="diliveryId" property="diliveryId" />
+		<result column="couponId" property="couponId" />
+	</resultMap>
+</mapper>

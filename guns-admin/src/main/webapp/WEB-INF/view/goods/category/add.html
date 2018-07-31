@@ -1,0 +1,54 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="tagInfoForm">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-12">
+                	<div class="form-group">
+	                	<div class="col-sm-8">
+	                       <#avatar id="imgUrl" name="分类图标" avatarImg=""/>
+					    </div>
+					</div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">分类名称</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="name" name="name" type="text">
+							
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">排序</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="num" name="num" type="text">
+
+                        </div>
+                    </div>
+                   <div class="form-group">
+                   		<label class="col-sm-2 control-label">父分类</label>
+	                   	<#input id="citySel" name=" " readonly="readonly" hidden="categoryId"
+							clickFun="CategoryInfoDlg.showCategorySelectTree(); return false;" style="background-color: #ffffff !important;"/>
+					</div>
+                </div>	
+            </div>
+			 <!-- 父级部门的选择框 -->
+            <div id="menuContent" class="menuContent"
+                 style="display: none; position: absolute; z-index: 200;">
+                <ul id="treeDemo" class="ztree tree-box" style="width: 245px !important;"></ul>
+            </div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="CategoryInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="CategoryInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript" src="${ctxPath}/static/js/plugins/wangEditor/wangEditor.js"></script>
+<script src="${ctxPath}/static/js/plugins/ckeditor/ckeditor.js"></script>
+<script src="${ctxPath}/static/modular/goods/category/category_info.js"></script>
+@}

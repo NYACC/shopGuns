@@ -1,0 +1,49 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" >
+            <input type="hidden" id="id" value="${deliveryCost.id}">
+            <div class="row">
+                <div class="form-group">
+				    <label class="col-sm-2 control-label">地区</label>
+				    <div class="col-sm-10">
+                       <input class="form-control"  type="text" name="areaName" readonly="readonly" value="${areaName}"/>
+				    </div>
+				</div>
+				<div class="form-group">
+				    <label class="col-sm-2 control-label">首重</label>
+				    <div class="col-sm-10">
+                       <input class="form-control"  type="number" name="ykg" id="ykg" value="${deliveryCost.ykg}" />
+				    </div>
+				</div>
+				 <div class="form-group">
+				    <label class="col-sm-2 control-label">首价</label>
+				    <div class="col-sm-10">
+                       <input class="form-control"  type="number" name="startPrice" id="startPrice" value="${deliveryCost.startPrice}" />
+				    </div>
+				</div>
+				<div class="form-group">
+				    <label class="col-sm-2 control-label">续重</label>
+				    <div class="col-sm-10">
+                       <input class="form-control"  type="number" name="addedWeight" id="addedWeight" value="${deliveryCost.addedWeight}" />
+				    </div>
+				</div>
+				<div class="form-group">
+				    <label class="col-sm-2 control-label">续价</label>
+				    <div class="col-sm-10">
+                       <input class="form-control"  type="number" name="addedPrice" id="addedPrice" value="${deliveryCost.addedPrice}" />
+				    </div>
+				</div>
+            </div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="DeliveryCostInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="DeliveryCostInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/delivery/deliveryMode/deliveryCost_info.js"></script>
+@}

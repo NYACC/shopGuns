@@ -1,0 +1,49 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>订单管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="customerName" name="顾客名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="sn" name="订单编号" />
+                            </div>
+                            <div class="col-sm-2">
+                                <select class="form-control m-b" name="status" id="status">
+                                    <option value="">--选择订单状态--</option>
+                                    <option value="0">待付款</option>
+                                    <option value="1">待审核</option>
+                                    <option value="2">待发货</option>
+                                    <option value="3">待收货</option>
+                                    <option value="4">交易完成</option>
+                                    <option value="5">交易关闭</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="Order.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="OrderTableToolbar" role="group">
+                            @if(shiro.hasPermission("/order/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="Order.openAddOrder()"/>
+                            @}
+                            @if(shiro.hasPermission("/order/update")){
+                                <#button name="修改" icon="fa-plus" clickFun="Order.openOrderDetail()"/>
+                            @}
+                        </div>
+                        <#table id="OrderTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/order/order/order.js"></script>
+@}

@@ -1,0 +1,32 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>余额管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="phoneNum" name="手机号码" />
+                            </div>
+                            <div class="col-sm-9">
+                                <#button name="搜索" icon="fa-search" clickFun="Balance.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="BalanceTableToolbar" role="group">
+                            @if(shiro.hasPermission("/balance/recharge")){
+                                <#button name="余额充值" icon="fa-user-secret" clickFun="Balance.openRecharge()"/>
+                            @}
+                        </div>
+                        <#table id="BalanceTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/member/balance/balance.js"></script>
+@}

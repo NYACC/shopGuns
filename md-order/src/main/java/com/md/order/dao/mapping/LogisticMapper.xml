@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.md.order.dao.LogisticMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.md.order.model.Logistic">
+		<id column="id" property="id" />
+		<result column="logisticsNum" property="logisticsNum" />
+		<result column="logisticsFirm" property="logisticsFirm" />
+		<result column="areaFee" property="areaFee" />
+		<result column="firstFee" property="firstFee" />
+		<result column="unitFee" property="unitFee" />
+	</resultMap>
+</mapper>

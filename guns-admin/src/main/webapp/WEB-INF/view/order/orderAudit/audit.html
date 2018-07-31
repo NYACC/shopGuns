@@ -1,0 +1,147 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins" >
+    <div class="ibox-content">
+        <div class="form-horizontal" id="OrderDetailInfoForm">
+        	<div class="row">
+                <div class="col-sm-12">
+                    <div class="tabs-container">
+                    	<ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">订单信息</a>
+                            </li>
+                            <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">订单明细</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                    	<div id="tab-1" class="tab-pane active">
+                        	<div class="panel-body">
+                        		<div class="row">
+					                <div class="col-sm-4 b-r">
+					                	<input id="id" type="hidden" value="${order.id}">
+					                    <label>订单编号：</label>&nbsp;<span id="sn">${order.sn}</span><br>
+					                </div>
+					                <div class="col-sm-4 b-r">
+					                    <label>下单日期：</label>&nbsp;${order.createTime}<br>
+					                </div>
+					                <div class="col-sm-4 b-r">
+					                    <label>订单状态：</label>&nbsp;${status}<br>
+					                </div>
+					                <div class="col-sm-4 b-r">
+					                    <label>门店名称：</label>${order.shop.name}<br>
+					                </div>
+					                <div class="col-sm-4 b-r">
+					                    <label>数量：</label>&nbsp;${order.packages}<br>
+					                </div>
+					                <div class="col-sm-4 b-r">
+					                    <label>商品总计：</label>&nbsp;${order.due}&nbsp;元<br>
+					                </div>
+					                <div class="col-sm-4 b-r">
+					                    <label>用户名称：</label>&nbsp;${order.member.name}&nbsp;<br>
+					                </div>
+					                <div class="col-sm-4 b-r">
+					                    <label>重量：</label>&nbsp;<br>
+					                </div>
+					                <div class="col-sm-4 b-r">
+					                    <label>运费：</label>&nbsp;&nbsp;元<br>
+					                </div>
+					                <div class="col-sm-4 b-r">
+					                    <label>会员卡号：</label>&nbsp;${order.member.CardSn}&nbsp;<br>
+					                </div>
+					                <div class="col-sm-4 b-r">
+					                    <label>参与促销：</label>&nbsp;<br>
+					                </div>
+					                <div class="col-sm-4 b-r">
+					                    <label>优惠价格：</label>&nbsp;&nbsp;元<br>
+					                </div>
+					                <div class="col-sm-4 b-r">
+					                    &nbsp;<br>
+					                </div>
+					                <div class="col-sm-4 b-r">
+					                    &nbsp;<br>
+					                </div>
+					                <div class="col-sm-4 b-r">
+					                    <label>实付金额：</label>&nbsp;${order.actualPay}&nbsp;元<br>
+					                </div>
+					                
+					                <div class="col-sm-12 b-r">
+					                    &nbsp;
+					                    <div class="hr-line-dashed"></div>
+					                </div>
+					                
+					                <div class="col-sm-6 " >
+					                	<label class="control-label">&nbsp;&nbsp;支付方式：&nbsp;${order.payment}</label>
+					                </div>
+					                <div class="col-sm-6 b-r" >
+					                	<label class="control-label">&nbsp;&nbsp;支付订单号：&nbsp;</label>
+					                </div>
+					                <div class="col-sm-12 " >
+					                	<label class="control-label">&nbsp;&nbsp;配送方式：&nbsp;</label>
+					                </div>
+					                <div class="col-sm-6 " >
+					                	<label class="control-label">&nbsp;&nbsp;物流公司：&nbsp;</label>
+					                </div>
+					                <div class="col-sm-6 b-r" >
+					                	<label class="control-label">&nbsp;&nbsp;物流号：&nbsp;</label>
+					                </div>
+					                <div class="col-sm-12 b-r">
+					                    <div class="hr-line-dashed"></div>
+					                </div>
+					                
+					                <div class="col-sm-6 " >
+					                	<label class="control-label">&nbsp;&nbsp;收货人：&nbsp;${order.consigneeName}</label>
+					                </div>
+					                <div class="col-sm-6 " >
+					                	<label class="control-label">&nbsp;&nbsp;电话：&nbsp;${order.phoneNum}</label>
+					                </div>
+					                <div class="col-sm-12 b-r " >
+					                	<label class="control-label">&nbsp;&nbsp;地址：&nbsp;福建省福州市鼓楼区</label>
+					                </div>
+					                <div class="col-sm-12 b-r" >
+					                	<label class="control-label">&nbsp;&nbsp;详细地址：&nbsp;${order.address}</label>
+					                </div>
+					               
+					                <div class="col-sm-12 b-r">
+					                    <div class="hr-line-dashed"></div>
+					                </div>
+					                <div class="col-sm-12 b-r">
+					                    <div class="form-group">
+						                    <div class="col-sm-1" >
+							                	<label class="control-label">&nbsp;&nbsp;备注：</label>
+							                </div>
+					                        <div class="col-sm-10">
+					                            <textarea  id="remark" rows="5"
+					                               style="width: 100%"></textarea>
+					                        </div>
+					                        <div class="col-sm-1"></div>
+					                    </div>
+					                </div>
+					            </div>
+                        	</div>
+                        </div>
+                        <div id="tab-2" class="tab-pane">
+                            <div class="panel-body">
+                                <#table id="OrderItemsTable"/>
+					            <div class="col-sm-12 b-r">
+					                &nbsp;
+					                <div class="hr-line-dashed"></div>
+					            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="通过" id="ensure" icon="fa-check" clickFun="AuditInfoDlg.auditPass()"/>
+                    <#button btnCss="danger" name="不通过" id="cancel" icon="fa-remove" clickFun="AuditInfoDlg.auditUnPass()"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/order/orderAudit/audit_info.js"></script>
+<script>
+AuditInfoDlg.orderItems=${orderItems};
+</script>
+
+@}

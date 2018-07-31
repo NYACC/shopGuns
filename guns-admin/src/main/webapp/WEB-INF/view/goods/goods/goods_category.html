@@ -1,0 +1,128 @@
+@layout("/common/_container.html"){
+
+<script type="text/javascript">
+    $(function () {
+        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+
+        $("#btn_close").bind("click", function () {
+            parent.layer.close(index);
+        });
+
+        $("#btn_save").bind("click", function () {
+            var ids = Feng.zTreeCheckedNodes("zTree");
+            var ajax = new $ax(Feng.ctxPath + "/goods/setCategory", function (data) {
+                Feng.success("选择分类成功!");
+                parent.layer.close(index);
+                $("#category",window.parent.document).val(JSON.parse(data).categoryNames);
+                $("#categoryIds",window.parent.document).val(JSON.parse(data).categoryIds);
+            }, function (data) {
+                Feng.error("选择分类失败!" + "!");
+            });
+            ajax.set("ids", ids);
+            ajax.start();
+        });
+
+        initZtree();
+    });
+    function zTreeBeforeCheck(treeId, treeNode) {
+        return !treeNode.isParent;//当是父节点 返回false 不让选取
+   	}
+    function initZtree() {
+        var setting = {
+            check: {
+                enable: true,
+                chkboxType: { "Y": "ps", "N": "ps" }
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+            	beforeCheck: zTreeBeforeCheck,
+                onCheck: function (event, treeId, treeNode) {
+                    var paramGroups = JSON.parse(localStorage.getItem("paramGroups"));
+                    var specGroups = JSON.parse(localStorage.getItem("specGroups"));
+                    var _products = JSON.parse(localStorage.getItem("products"));
+                    products.init(_products);
+                    if (treeNode.checked) {
+                        //获取参数
+                        var ajax = new $ax(Feng.ctxPath + "/goods/paramItems", function (data) {
+                            if (localStorage.getItem("paramGroups") == null) {
+                                paramGroups = [];
+                            }
+                            paramGroups = paramGroups.concat(data);
+                        }, function (data) {
+                            Feng.error("获取参数失败!" + data.responseJSON.message + "!");
+                        });
+                        ajax.set("categoryIds", treeNode.id);
+                        ajax.start();
+                        //获取规格
+                        var ajax = new $ax(Feng.ctxPath + "/goods/specItems", function (data) {
+                            if (localStorage.getItem("specGroups") == null) {
+                                specGroups = [];
+                            }
+                            specGroups = specGroups.concat(data);
+                        }, function (data) {
+                            Feng.error("获取规格失败!" + data.responseJSON.message + "!");
+                        });
+                        ajax.set("categoryIds", treeNode.id);
+                        ajax.start();
+                    } else {
+                        for (var i = paramGroups.length - 1; i >= 0; i--) {
+                            if (paramGroups[i].categoryId == treeNode.id) {
+                                paramGroups.splice(i, 1);
+                            }
+                        }
+                        var categorySpecGroups = specGroups.filter(function (specify) {
+                            return specify.categoryId == treeNode.id;
+                        })
+                        products.removeItem(categorySpecGroups);
+
+                        for (var i = specGroups.length - 1; i >= 0; i--) {
+                            if (specGroups[i].categoryId == treeNode.id) {
+                                specGroups.splice(i, 1);
+                            }
+                        }
+                    }
+                    localStorage.setItem("paramGroups", JSON.stringify(paramGroups));
+                    localStorage.setItem("specGroups", JSON.stringify(specGroups));
+                    localStorage.setItem("products", JSON.stringify([].concat(products.items)));
+                }
+            }
+        };
+		var categoryIds=parent.document.getElementById("categoryIds").value;
+		if(categoryIds.indexOf("[")!=-1){
+			categoryIds=categoryIds.substring(categoryIds.indexOf("[")+1,categoryIds.lastIndexOf("]"));
+        }
+		if(categoryIds==""){
+			categoryIds=0;
+		}
+        var ztree = new $ZTree("zTree", "/category/treeByCid/"+categoryIds);
+        ztree.setSettings(setting);
+        ztree.init();
+    }
+</script>
+<!-- 配置grid -->
+<div class="container" style="padding:  0px 10px !important;margin-top: -10px;text-align: center !important;">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <ul id="zTree" class="ztree"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-sm btn-info" type="button" id="btn_save">
+                <i class="ace-icon fa fa-check bigger-110"></i>保存
+            </button>
+            &nbsp;
+            <button class="btn btn-sm btn-danger" type="button" id="btn_close">
+                <i class="ace-icon fa fa-close bigger-110"></i>关闭
+            </button>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/goods/goods/goods_info.js"></script>
+@}

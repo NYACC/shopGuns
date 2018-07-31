@@ -1,0 +1,71 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>配送费管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                    	<div class="row">
+                    		<input type="hidden" id="id" value="${deliveryMode.id}">
+                            <div class="form-group col-sm-12 ">
+							   <div class="col-sm-3">
+							   		<#SelectCon id="deliveryPro" name="派货地区" >
+		                                <option value="">请选择省</option>
+		                            </#SelectCon>
+		                        </div>
+		                        <div class="col-sm-2">
+		                            <select class="form-control m-b" id="deliveryCity" onchange="DeliveryCost.deliveryCityChange()" >
+		                                <option value="">请选择市</option>
+		                            </select>
+		                        </div>
+		                        <div class="col-sm-2">
+		                            <select class="form-control m-b" id="deliveryCou" >
+		                                <option value="">请选择区/县</option>
+		                            </select>
+		                        </div>
+		                       <div class="col-sm-3 ">
+			                       	<#SelectCon id="isdelivery" name="是否配送" >
+			                       		<option value="">请选择</option>
+	                                    <option value="true">是</option>
+	                                    <option value="false">否</option>
+	                                </#SelectCon>
+		                       </div>
+							</div>
+							<div class="form-group col-sm-12 ">
+							   <div class="col-sm-3">
+							   		<#SelectCon id="province" name="配送地区"  onChange="DeliveryCost.provinceChange()">
+		                                <option value="">请选择省</option>
+		                            </#SelectCon>
+		                        </div>
+		                        <div class="col-sm-2">
+		                            <select class="form-control m-b" id="city" onchange="DeliveryCost.cityChange()" >
+		                                <option value="">请选择市</option>
+		                            </select>
+		                        </div>
+		                        <div class="col-sm-2">
+		                            <select class="form-control m-b" id="county" >
+		                                <option value="">请选择区/县</option>
+		                            </select>
+		                        </div>
+		                        <div class="col-sm-3">
+	                                <#button name="搜索" icon="fa-search" clickFun="DeliveryCost.search()"/>
+	                            </div>
+							</div>
+                        </div>
+                        <div class="hidden-xs" id="DeliveryCostTableToolbar" role="group">
+                            <#button name="修改" icon="fa-edit" clickFun="DeliveryCost.openDetail()"/>
+                            <#button name="下载配送费导入模板" icon="fa-plus" clickFun="DeliveryCost.downloadTemplate()"/>
+                            <#button name="导入配送费" icon="fa-plus" clickFun="DeliveryCost.openImport()"/>
+                        </div>
+                        <#table id="DeliveryCostTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/delivery/deliveryMode/deliveryCost.js"></script>
+@}
